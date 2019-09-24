@@ -27,6 +27,7 @@ window.onload = function() {
                isactive : true
             }
          });
+		 // My little addition:
 		 $("#btn1").on("click", function() {
 			vm2.$data.isactive = !vm2.$data.isactive;
 		 });
@@ -43,11 +44,115 @@ window.onload = function() {
          });
 
 
+         var vm = new Vue({
+            el: '#classbinding2',
+            data: {
+               title : "This is class binding example",
+               infoclass : 'info',
+               errorclass : 'displayError'
+            }
+         });
+
+         var vm = new Vue({
+            el: '#classbinding3',
+            data: {
+               title : "This is class binding example",
+               infoclass : 'info',
+               errorclass : 'displayError',
+               isActive : true,
+               haserror : false
+            }
+         });
+
+         var vm = new Vue({
+            el: '#classbinding4',
+            data: {
+               title : "This is class binding example",
+               infoclass : 'info',
+               errorclass : 'displayError',
+               isActive : false,
+               haserror : true
+            },
+            components:{
+               'new_component' : {
+                  template : '<div class = "info">Class Binding for component</div>'
+               }
+            }
+         });
+
+
+         var vm = new Vue({
+            el: '#classbinding5',
+            data: {
+               title : "This is class binding example",
+               infoclass : 'info',
+               errorclass : 'displayError',
+               isActive : false,
+               haserror : true
+            },
+            components:{
+               'new_component' : {
+                  template : '<div class = "info">Class Binding for component</div>'
+               }
+            }
+         });
+
+         var vm = new Vue({
+            el: '#databinding6',
+            data: {
+               title : "Inline style Binding",
+               activeColor: 'red',
+               fontSize :'30'
+            }
+         });
+
+
+         var vm = new Vue({
+            el: '#databinding7',
+            data: {
+               title : "Inline style Binding",
+               styleobj : {
+                  color: 'red',
+                  fontSize :'40px'
+               }
+            }
+         });
+
+
+         var vm = new Vue({
+            el: '#databinding8',
+            data: {
+               name:'',
+               textmessage:'',
+               checked : false
+            }
+         });
+
+         var vm = new Vue({
+            el: '#databinding9',
+            data: {
+               picked : 'White',
+               languages : "Java"
+            }
+         });
+
+         var vm = new Vue({
+            el: '#databinding10',
+            data: {
+               age : 0,
+               msg: '',
+               message : ''
+            }
+         });
+
 
 }
 </script>		
 
       <style>
+		hr {
+			border:2px solid black;
+		}
          .info {
             color: #00529B;
             background-color: #BDE5F8;
@@ -81,6 +186,7 @@ window.onload = function() {
 <hr />	  
 
       <div id = "classbinding">
+		<!-- demonstrating some conditional logic -->
          <div v-bind:class = "{active:isactive}"><b>{{title}}</b></div>
       </div>
 	  <button id="btn1">Click me!</button>
@@ -89,11 +195,106 @@ window.onload = function() {
 
 
       <div id = "classbinding1">
-         <div class = "info"  v-bind:class = "{ active: isActive, 'displayError': hasError }">
+		<!-- demonstrating some conditional logic on multiple classes to add -->
+         <div class = "info"  v-bind:class = "{ active: isActive, displayError: hasError }">
             {{title}}
          </div>
       </div>
 
+<hr />
+
+
+      <div id = "classbinding2">
+		<!-- demonstrating multiples -->
+         <div v-bind:class = "[infoclass, errorclass]">{{title}}</div>
+      </div>
+
+
+<hr />
+
+
+      <div id = "classbinding3">
+         <div v-bind:class = "[isActive ? infoclass : '', haserror ? errorclass : '']">{{title}}</div>
+      </div>
+
+<hr />
+
+      <div id = "classbinding4">
+         <new_component class = "active"></new_component>
+      </div>
+	  
+	  
+<hr />
+
+
+      <div id = "classbinding5">
+         <new_component v-bind:class = "{active:isActive}"></new_component>
+      </div>
+	  
+<hr />
+
+
+      <div id = "databinding6">
+         <div v-bind:style = "{ color: activeColor, fontSize: fontSize + 'px' }">{{title}}</div>
+      </div>
+	  
+<hr />
+
+      <div id = "databinding7">
+         <div v-bind:style = "styleobj">{{title}}</div>
+      </div>
+	  
+	  
+<hr />
+
+
+      <div id = "databinding8">
+         <h3>TEXTBOX</h3>
+         <input  v-model = "name" placeholder = "Enter Name" />
+         <h3>Name entered is : {{name}}</h3>
+         <hr/>
+         <h3>Textarea</h3>
+         <textarea v-model = "textmessage" placeholder = "Add Details"></textarea>
+         <h1><p>{{textmessage}}</p></h1>
+         <hr/>
+         <h3>Checkbox</h3>
+         <input type = "checkbox" id = "checkbox" v-model = "checked"> {{checked}}
+      </div>
+
+
+<hr />
+
+
+      <div id = "databinding9">
+         <h3>Radio</h3>
+         <input type = "radio" id = "black" value = "Black" v-model = "picked">Black
+         <input type = "radio" id = "white" value = "White" v-model = "picked">White
+         <h3>Radio element clicked : {{picked}} </h3>
+         <hr/>
+         <h3>Select</h3>
+         <select v-model = "languages">
+            <option disabled value = "">Please select one</option>
+            <option>Java</option>
+            <option>Javascript</option>
+            <option>Php</option>
+            <option>C</option>
+            <option>C++</option>
+         </select>
+         <h3>Languages Selected is : {{ languages }}</h3>
+         <hr/>
+      </div>
+
+<hr />
+
+      <div id = "databinding10">
+         <span style = "font-size:25px;">Enter Age:</span> <input v-model.number = "age" type = "number">
+         <br/>
+         <span style = "font-size:25px;">Enter Message:</span> <input v-model.lazy = "msg">
+         <h3>Display Message : {{msg}}</h3>
+         <br/>
+         <span style = "font-size:25px;">Enter Message : </span><input v-model.trim = "message">
+         <h3>Display Message : {{message}}</h3>
+      </div>
 
 	  
    </body>
