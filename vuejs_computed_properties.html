@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<title>Vue Practice (local)</title>
+		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+		<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+var vm;
+window.onload = function() {
+
+	var vm = new Vue({
+	   el: '#computed_props',
+	   data: {
+		  firstname :"",
+		  lastname :"",
+		  birthyear : ""
+	   },
+	   computed :{
+		  getfullname : function(){
+			 return this.firstname +" "+ this.lastname;
+		  }
+	   }
+	})
+
+	 var vm = new Vue({
+		el: '#computed_props1',
+		data: {
+		   name : "helloworld"
+		},
+		methods: {
+		   getrandomno1 : function() {
+			  return Math.random();
+		   }
+		},
+		computed :{
+		   getrandomno : function(){
+			  return Math.random();
+		   }
+		}
+	 });
+
+	 var vm = new Vue({
+		el: '#computed_props2',
+		data: {
+		   firstName : "Terry",
+		   lastName : "Ben"
+		},
+		methods: {
+		},
+		computed :{
+		   fullname : {
+			  get : function() {
+				 return this.firstName+" "+this.lastName;
+			  },
+			  set : function(name) {
+				 var fname = name.split(" ");
+				 this.firstName = fname[0];
+				 this.lastName = fname[1]
+			  }
+		   }
+		}
+	 });
+
+}
+</script>		
+	</head>
+   <body>
+	  
+      <div id = "computed_props">
+         FirstName : <input type = "text" v-model = "firstname" /> <br/><br/>
+         LastName : <input type = "text" v-model = "lastname"/> <br/><br/>
+         <h1>My name is {{firstname}} {{lastname}}</h1>
+         <h1>Using computed method : {{getfullname}}</h1>
+      </div>
+	  
+	  <hr />
+   
+      <div id = "computed_props1">
+         <h1 style = "background-color:gray;">Random No from computed property: {{getrandomno}}</h1>
+         <h1>Random No from method: {{getrandomno1()}}</h1>
+         <h1>Random No from method : {{getrandomno1()}}</h1>
+         <h1  style = "background-color:gray;">Random No from computed property: {{getrandomno}}</h1>
+         <h1  style = "background-color:gray;">Random No from computed property: {{getrandomno}}</h1>
+         <h1  style = "background-color:gray;">Random No from computed
+            property: {{getrandomno}}</h1>
+         <h1>Random No from method: {{getrandomno1()}}</h1>
+         <h1>Random No from method: {{getrandomno1()}}</h1>
+      </div>
+	  
+	  <hr />
+	  
+      <div id = "computed_props2">
+         <input type = "text" v-model = "fullname" />
+         <h1>{{firstName}}</h1>
+         <h1>{{lastName}}</h1>
+      </div>	  
+	  
+   </body>
+</html>

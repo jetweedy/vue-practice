@@ -1,0 +1,100 @@
+<html>
+	<head>
+		<title>Vue Practice (local)</title>
+		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+		<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+var vm;
+window.onload = function() {
+
+         var vm1 = new Vue({
+            el: '#databinding',
+            data: {
+               title : "DATA BINDING",
+               hreflink : "http://www.google.com"
+            }
+         });
+
+         var vm2 = new Vue({
+            el: '#classbinding',
+            data: {
+               title : "CLASS BINDING",
+               isactive : true
+            }
+         });
+		 $("#btn1").on("click", function() {
+			vm2.$data.isactive = !vm2.$data.isactive;
+		 });
+
+
+
+         var vm = new Vue({
+            el: '#classbinding1',
+            data: {
+               title : "This is class binding example",
+               isActive : false,
+               hasError : false
+            }
+         });
+
+
+
+}
+</script>		
+
+      <style>
+         .info {
+            color: #00529B;
+            background-color: #BDE5F8;
+         }
+         div {
+            margin: 10px 0;
+            padding: 12px;
+         }
+         .active {
+            color: #4F8A10;
+            background-color: #DFF2BF;
+         }
+         .displayError{
+            color: #D8000C;
+            background-color: #FFBABA;
+         }
+      </style>
+
+	</head>
+   <body>
+	  
+      <div id = "databinding">
+         {{title}}<br/>
+		 <!--
+         <a href = "hreflink" target = "_blank"> Click Me </a> <br/>
+         <a href = "{{hreflink}}" target = "_blank">Click Me </a>  <br/>
+		 -->
+         <a v-bind:href = "hreflink" target = "_blank">Click Me </a>   <br/>
+      </div>	
+
+<hr />	  
+
+      <div id = "classbinding">
+         <div v-bind:class = "{active:isactive}"><b>{{title}}</b></div>
+      </div>
+	  <button id="btn1">Click me!</button>
+	  
+<hr />
+
+
+      <div id = "classbinding1">
+         <div class = "info"  v-bind:class = "{ active: isActive, 'displayError': hasError }">
+            {{title}}
+         </div>
+      </div>
+
+
+	  
+   </body>
+</html>
