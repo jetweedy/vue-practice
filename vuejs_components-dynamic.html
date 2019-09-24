@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<title>Vue Practice (local)</title>
+		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+		<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+var vm;
+window.onload = function() {
+	vm = new Vue({
+		el: '#databinding',
+		data: {
+		   view: 'component1'
+		},
+		components: {
+		   'component1': {
+			  template: '<div><span style = "font-size:25;color:red;">Dynamic Component 1</span></div>'
+		   },
+		   'component2': {
+			  template: '<div><span style = "font-size:25;color:red;">Dynamic Component 2</span></div>'
+		   }
+		}
+	});
+	// Ooooh, looky!:
+	document.querySelector("#btn1").addEventListener("click", function() {
+		vm.$data.view = 'component2';
+	});
+}
+</script>		
+	</head>
+   <body>
+	<button id="btn1">Click me!</button>
+      <div id = "databinding">
+         <component v-bind:is = "view"></component>
+      </div>
+   </body>
+</html>
