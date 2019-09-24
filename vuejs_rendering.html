@@ -1,0 +1,169 @@
+<html>
+	<head>
+		<title>Vue Practice (local)</title>
+		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+		<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+var vm;
+window.onload = function() {
+
+
+         var vm = new Vue({
+            el: '#databinding',
+            data: {
+               show: true,
+               styleobj: {
+                  backgroundColor: '#2196F3!important',
+                  cursor: 'pointer',
+                  padding: '8px 16px',
+                  verticalAlign: 'middle',
+               }
+            },
+            methods : {
+               showdata : function() {
+                  this.show = !this.show;
+               }
+            },
+         });
+
+         var vm = new Vue({
+            el: '#databinding1',
+            data: {
+               show: true,
+               styleobj: {
+                  backgroundColor: '#2196F3!important',
+                  cursor: 'pointer',
+                  padding: '8px 16px',
+                  verticalAlign: 'middle',
+               }
+            },
+            methods : {
+               showdata : function() {
+                  this.show = !this.show;
+               }
+            },
+         });
+
+
+
+         var vm = new Vue({
+            el: '#databinding2',
+            data: {
+               show: true,
+               styleobj: {
+                  backgroundColor: '#2196F3!important',
+                  cursor: 'pointer',
+                  padding: '8px 16px',
+                  verticalAlign: 'middle',
+               }
+            },
+            methods : {
+               showdata : function() {
+                  this.show = !this.show;
+               }
+            },
+         });
+
+
+         var vm = new Vue({
+            el: '#databinding3',
+            data: {
+               items:[],
+               styleobj: {
+                  width: "30%",
+                  padding: "12px 20px",
+                  margin: "8px 0",
+                  boxSizing: "border-box"
+               }
+            },
+            methods : {
+               showinputvalue : function(event) {
+                  this.items.push(event.target.value);
+               }
+            },
+         });
+
+         var vm = new Vue({
+            el: '#databinding4',
+            data: {
+               items:[],
+               styleobj: {
+                  width: "30%",
+                  padding: "12px 20px",
+                  margin: "8px 0",
+                  boxSizing: "border-box"
+               }
+            },
+            methods : {
+               showinputvalue : function(event) {
+                  this.items.push(event.target.value);
+               }
+            },
+         });
+		 
+}
+</script>		
+
+	</head>
+   <body>
+	  
+      <div id = "databinding4">
+         <input type = "text" v-on:keyup.enter = "showinputvalue"
+            v-bind:style = "styleobj" placeholder = "Enter Fruits Names"/>
+         <h1 v-if = "items.length>0">Display Fruits Name</h1>
+         <ul>
+            <li v-for = "(a, index) in items">{{index}}--{{a}}</li>
+         </ul>
+      </div>
+
+<hr />
+
+      <div id = "databinding3">
+         <input type = "text" v-on:keyup.enter = "showinputvalue"
+            v-bind:style = "styleobj" placeholder = "Enter Fruits Names"/>
+         <h1 v-if = "items.length>0">Display Fruits Name</h1>
+         <ul>
+            <li v-for = "a in items">{{a}}</li>
+         </ul>
+      </div>
+
+<hr />
+
+
+      <div id = "databinding2">
+         <button v-on:click = "showdata" v-bind:style = "styleobj">Click Me</button>
+         <span style = "font-size:25px;"><b>{{show}}</b></span>
+         <h1 v-if = "show">This is h1 tag</h1>
+         <h2 v-else>This is h2 tag</h2>
+         <div v-show = "show">
+            <b>V-Show:</b>
+            <img src = "image1.png" width = "100" height = "100" />
+         </div>
+      </div>
+
+	  
+<hr />
+
+      <div id = "databinding1">
+         <button v-on:click = "showdata" v-bind:style = "styleobj">Click Me</button>
+         <span style = "font-size:25px;"><b>{{show}}</b></span>
+         <h1 v-if = "show">This is h1 tag</h1>
+         <h2 v-else>This is h2 tag</h2>
+      </div>
+
+<hr />
+
+      <div id = "databinding">
+         <button v-on:click = "showdata" v-bind:style = "styleobj">Click Me</button>
+         <span style = "font-size:25px;"><b>{{show}}</b></span>
+         <h1 v-if = "show">This is h1 tag</h1>
+         <h2>This is h2 tag</h2>
+      </div>
+	  
+   </body>
+</html>
