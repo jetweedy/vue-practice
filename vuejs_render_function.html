@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title>Vue Practice (local)</title>
+		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+		<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+var vm;
+window.onload = function() {
+
+         Vue.component('testcomponent',{
+            render: function(createElement){
+               var a = this.elementtype.split(",");
+               return createElement(a[0],{
+                  attrs:{
+                     id:a[3],
+                     style:"color:"+a[1]+";font-size:"+a[2]+";"
+                  }
+               },
+               this.$slots.default
+               )
+            },
+            props:{
+               elementtype:{
+                  attributes:String,
+                  required:true
+               }
+            }
+         });
+         var vm = new Vue({
+            el: '#component_test'
+         });
+
+
+
+}
+</script>		
+
+	</head>
+   <body>
+	  
+      <div id = "component_test">
+         <testcomponent :elementtype = "'div,red,25,div1'">Hello Jai</testcomponent>
+         <testcomponent :elementtype = "'h3,green,25,h3tag'">Hello Roy</testcomponent>
+         <testcomponent :elementtype = "'p,blue,25,ptag'">Hello Ria</testcomponent>
+         <testcomponent :elementtype = "'div,green,25,divtag'">Hello Ben</testcomponent>
+      </div>
+
+
+	  
+   </body>
+</html>
